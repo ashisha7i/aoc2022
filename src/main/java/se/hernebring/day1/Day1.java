@@ -2,6 +2,9 @@ package se.hernebring.day1;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
@@ -13,11 +16,14 @@ public class Day1 {
         for(String l : lines)
             System.out.println(l);
 
-// ALTERNATIVE
+// ALTERNATIVE USING SCANNER
 //        try(Scanner scanner = new Scanner(file)) {
 //            while(scanner.hasNext())
 //                System.out.println(scanner.nextLine());
 //
 //        }
+
+// ALTERNATIVE FOR FUNCTIONAL STRING MANIPULATION
+//        String.join(",", readAllLines(file.toPath()));
     }
 }
