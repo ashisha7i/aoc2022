@@ -19,5 +19,8 @@ public class Day2 {
 //                System.out.println(scanner.nextLine());
 //
 //        }
+
+// ALTERNATIVE FOR FUNCTIONAL STRING MANIPULATION
+//        String.join(",", readAllLines(file.toPath()));
     }
 }
