@@ -22,6 +22,7 @@ public class Solution {
 
             }
         }
+        //Last line is data
         addToHighScore(sum);
         //Part 1:
         System.out.println(top3[0]);
