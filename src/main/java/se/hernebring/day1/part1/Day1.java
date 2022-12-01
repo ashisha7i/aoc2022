@@ -1,10 +1,8 @@
 package se.hernebring.day1.part1;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 import static java.nio.file.Files.readAllLines;
 
