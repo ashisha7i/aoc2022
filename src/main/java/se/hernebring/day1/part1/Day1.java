@@ -12,17 +12,16 @@ public class Day1 {
     public static void main(String[] args) throws IOException {
         File file = new File("src/main/resources/day1sample.txt");
         List<String> lines = readAllLines(file.toPath());
-        int max = 0;
-        int current = 0;
+        int max = 0, current = 0;
         for(String l : lines) {
             if(l.isBlank()) {
                 if(current > max)
                     max = current;
 
                 current = 0;
-            } else {
+            } else
                 current += Integer.parseInt(l);
-            }
+
         }
         System.out.println(max);
     }
