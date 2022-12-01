@@ -8,24 +8,25 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day1 {
 
-    private static int max1 = 0, max2 = 0, max3 = 0, current = 0;
+    private static int max1 = 0, max2 = 0, max3 = 0;
 
     public static void main(String[] args) throws IOException {
         File file = new File("src/main/resources/day1sample.txt");
         List<String> lines = readAllLines(file.toPath());
+        int current = 0;
         for(String l : lines) {
             if(l.isBlank()) {
-                addToHighScore();
+                addToHighScore(current);
                 current = 0;
             } else
                 current += Integer.parseInt(l);
 
         }
-        addToHighScore();
+        addToHighScore(current);
         System.out.println(max1 + max2 + max3);
     }
 
-    private static void addToHighScore() {
+    private static void addToHighScore(int current) {
         if(current > max1) {
             max3 = max2;
             max2 = max1;
