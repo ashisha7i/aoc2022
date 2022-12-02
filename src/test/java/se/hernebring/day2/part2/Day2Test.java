@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day2Test {
 
     @Test
-    void mainPrints12AfterScoring() {
+    void mainPrints34AfterScoringWithModifiedSample() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day2.main(null));
