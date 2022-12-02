@@ -11,7 +11,7 @@ import static se.hernebring.day2.RockPaperScissors.*;
 
 public class Day2 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day2sample.txt");
+        File file = new File("src/main/resources/day2samplePart2.txt");
         int score = 0;
         try(Scanner scanner = new Scanner(file)) {
             Game g = new Game();
