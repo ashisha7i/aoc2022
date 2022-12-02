@@ -13,13 +13,6 @@ import static se.hernebring.day2.RockPaperScissors.ROCK;
 class Day2Test {
 
     @Test
-    void weWantsToLoseAgainstOpponentRock() {
-        RockPaperScissors o = ROCK;
-
-    }
-
-
-    @Test
     void mainPrints12AfterScoring() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
