@@ -6,8 +6,7 @@ import se.hernebring.day2.RockPaperScissors;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
-import static se.hernebring.day2.RockPaperScissors.*;
+import java.util.stream.Stream;
 
 public class Day2 {
     public static void main(String[] args) throws IOException {
@@ -16,40 +15,33 @@ public class Day2 {
         try(Scanner scanner = new Scanner(file)) {
             Game g = new Game();
             while(scanner.hasNext()) {
-                String opponent = scanner.next();
-                RockPaperScissors o = switch (opponent) {
-                    case "A" -> ROCK;
-                    case "B" -> PAPER;
-                    case "C" -> SCISSORS;
-                    default -> null;
-                };
-                g.opponentPlayed(o);
-                String us = scanner.next();
-                RockPaperScissors u;
-                switch(us) {
-                    case "X" -> {
-                        if(o == ROCK)
-                            u = SCISSORS;
-                        else if(o == PAPER)
-                            u = ROCK;
-                        else
-                            u = PAPER;
-                    }
-                    case "Y" -> u = o;
-                    case "Z" -> {
-                        if(o == ROCK)
-                            u = PAPER;
-                        else if(o == PAPER)
-                            u = SCISSORS;
-                        else
-                            u = ROCK;
-                    }
-                    default -> u = null;
-                }
+                String current = scanner.next();
+                int diff = current.charAt(0) - 'A';
+                RockPaperScissors opponent = RockPaperScissors.getFromZeroIndex(diff);
+                g.opponentPlayed(opponent);
+
+                current = scanner.next();
+                RockPaperScissors u = wePlayAgainst(current, opponent);
                 g.wePlayed(u);
+
                 score += g.getOurScore();
             }
             System.out.println(score);
         }
+    }
+
+    private static RockPaperScissors wePlayAgainst(String current, RockPaperScissors opponent) {
+        RockPaperScissors weWillDraw = Game.drawingStrategy(opponent);
+        if(!current.equals("Y")) {
+            RockPaperScissors weWillWin = Game.winningStrategy(opponent);
+            if(current.equals("Z"))
+                return weWillWin;
+            else
+                return Stream.of(RockPaperScissors.values())
+                        .filter(v -> v != weWillWin & v != weWillDraw)
+                        .findFirst().orElseThrow(IllegalStateException::new);
+
+        }
+        return weWillDraw;
     }
 }

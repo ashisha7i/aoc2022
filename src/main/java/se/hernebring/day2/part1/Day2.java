@@ -14,22 +14,16 @@ public class Day2 {
         try(Scanner scanner = new Scanner(file)) {
             Game g = new Game();
             while(scanner.hasNext()) {
-                String opponent = scanner.next();
-                RockPaperScissors o = switch (opponent) {
-                    case "A" -> RockPaperScissors.ROCK;
-                    case "B" -> RockPaperScissors.PAPER;
-                    case "C" -> RockPaperScissors.SCISSORS;
-                    default -> null;
-                };
+                String current = scanner.next();
+                int diff = current.charAt(0) - 'A';
+                RockPaperScissors o = RockPaperScissors.getFromZeroIndex(diff);
                 g.opponentPlayed(o);
-                String us = scanner.next();
-                RockPaperScissors u = switch (us) {
-                    case "X" -> RockPaperScissors.ROCK;
-                    case "Y" -> RockPaperScissors.PAPER;
-                    case "Z" -> RockPaperScissors.SCISSORS;
-                    default -> null;
-                };
+
+                current = scanner.next();
+                diff = current.charAt(0) - 'X';
+                RockPaperScissors u = RockPaperScissors.getFromZeroIndex(diff);
                 g.wePlayed(u);
+
                 score += g.getOurScore();
             }
             System.out.println(score);

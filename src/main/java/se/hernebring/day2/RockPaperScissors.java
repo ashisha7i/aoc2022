@@ -9,6 +9,16 @@ public enum RockPaperScissors {
         this.value = value;
     }
 
+    public static RockPaperScissors getFromZeroIndex(int diff) {
+        RockPaperScissors[] options = RockPaperScissors.values();
+        for(int i = 0; i < options.length; i++) {
+            if(i == diff)
+                return options[i];
+
+        }
+        return null;
+    }
+
     int getValue() {
         return value;
     }

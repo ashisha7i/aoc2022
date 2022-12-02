@@ -16,15 +16,37 @@ public class Game {
 
     public int getOurScore() {
         int score = 0;
-        if((opponent == ROCK & us == PAPER) |
-                (opponent == PAPER & us == SCISSORS) |
-                (opponent == SCISSORS & us == ROCK))
+        if(weWon())
             score += 6;
-        else if((opponent == ROCK & us == ROCK) |
-                (opponent == PAPER & us == PAPER) |
-                (opponent == SCISSORS & us == SCISSORS))
+        else if(weDrew())
             score += 3;
 
         return score + us.getValue();
+    }
+
+    public static RockPaperScissors drawingStrategy(RockPaperScissors opponent) {
+        return opponent;
+    }
+
+    public static RockPaperScissors winningStrategy(RockPaperScissors opponent) {
+        Game inTheFuture = new Game();
+        inTheFuture.opponentPlayed(opponent);
+        for(RockPaperScissors v : RockPaperScissors.values()) {
+            inTheFuture.wePlayed(v);
+            if(inTheFuture.weWon())
+                return v;
+
+        }
+        return null;
+    }
+
+    private boolean weWon() {
+        return (opponent == ROCK & us == PAPER) |
+                (opponent == PAPER & us == SCISSORS) |
+                (opponent == SCISSORS & us == ROCK);
+    }
+
+    private boolean weDrew() {
+        return opponent == us;
     }
 }
