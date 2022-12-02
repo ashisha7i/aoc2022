@@ -1,14 +1,12 @@
 package se.hernebring.day2.part2;
 
 import org.junit.jupiter.api.Test;
-import se.hernebring.day2.RockPaperScissors;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static se.hernebring.day2.RockPaperScissors.ROCK;
 
 class Day2Test {
 
