@@ -1,6 +1,6 @@
-package se.hernebring.day2.part1;
+package se.hernebring.day2;
 
-import static se.hernebring.day2.part1.RockPaperScissors.*;
+import static se.hernebring.day2.RockPaperScissors.*;
 
 public class Game {
     private RockPaperScissors opponent;
@@ -16,11 +16,15 @@ public class Game {
 
     public int getOurScore() {
         int score = 0;
-        if((opponent == ROCK & us == PAPER) | (opponent == PAPER & us == SCISSORS) | (opponent == SCISSORS & us == ROCK))
+        if((opponent == ROCK & us == PAPER) |
+                (opponent == PAPER & us == SCISSORS) |
+                (opponent == SCISSORS & us == ROCK))
             score += 6;
-        else if((opponent == ROCK & us == ROCK) | (opponent == PAPER & us == PAPER) | (opponent == SCISSORS & us == SCISSORS)) {
+        else if((opponent == ROCK & us == ROCK) |
+                (opponent == PAPER & us == PAPER) |
+                (opponent == SCISSORS & us == SCISSORS))
             score += 3;
-        }
+
         return score + us.getValue();
     }
 }

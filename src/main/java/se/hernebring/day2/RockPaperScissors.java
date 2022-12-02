@@ -1,4 +1,4 @@
-package se.hernebring.day2.part1;
+package se.hernebring.day2;
 
 public enum RockPaperScissors {
     ROCK(1), PAPER(2), SCISSORS(3);

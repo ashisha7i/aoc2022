@@ -6,8 +6,6 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import static java.nio.file.Files.readAllLines;
-
 public class AlternativeSolution {
     public static void main(String[] args) throws IOException {
         Path path = Path.of("src/main/resources/day1sample.txt");
