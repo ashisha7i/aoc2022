@@ -13,21 +13,21 @@ public class Day2 {
         File file = new File("src/main/resources/day2samplePart2.txt");
         int score = 0;
         try(Scanner scanner = new Scanner(file)) {
-            Game g = new Game();
+            Game game = new Game();
             while(scanner.hasNext()) {
                 String current = scanner.next();
                 int diff = current.charAt(0) - 'A';
                 RockPaperScissors opponent = RockPaperScissors.getFromZeroIndex(diff);
-                g.opponentPlayed(opponent);
+                game.opponentPlayed(opponent);
 
                 current = scanner.next();
                 RockPaperScissors u = wePlayAgainst(current, opponent);
-                g.wePlayed(u);
+                game.wePlayed(u);
 
-                score += g.getOurScore();
+                score += game.getOurScore();
             }
-            System.out.println(score);
         }
+        System.out.println(score);
     }
 
     private static RockPaperScissors wePlayAgainst(String current, RockPaperScissors opponent) {
