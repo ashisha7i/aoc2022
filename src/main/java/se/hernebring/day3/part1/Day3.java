@@ -11,19 +11,20 @@ public class Day3 {
         File file = new File("src/main/resources/day3sample.txt");
         int sum = 0;
         try(Scanner scanner = new Scanner(file)) {
-            while(scanner.hasNext())
-                sum += findCommonCharacterValueFromHalf(scanner.nextLine());
-
+            while(scanner.hasNext()) {
+                char c = findCommonCharacterInHalves(scanner.nextLine());
+                sum += CharacterUtils.getValue(c);
+            }
         }
         System.out.println(sum);
     }
 
-    private static int findCommonCharacterValueFromHalf(String line) {
+    private static char findCommonCharacterInHalves(String line) {
         String firstHalf = line.substring(0, line.length() / 2);
         String secondHalf = line.substring(line.length() / 2);
         for(char c : firstHalf.toCharArray()) {
             if(secondHalf.indexOf(c) >= 0)
-                return CharacterUtils.getValue(c);
+                return c;
 
         }
         throw new IllegalStateException();
