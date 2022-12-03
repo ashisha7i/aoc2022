@@ -1,5 +1,7 @@
 package se.hernebring.day3.part1;
 
+import se.hernebring.day3.CharacterUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,22 +11,21 @@ public class Day3 {
         File file = new File("src/main/resources/day3sample.txt");
         int sum = 0;
         try(Scanner scanner = new Scanner(file)) {
-            while(scanner.hasNext()) {
-                String current = scanner.nextLine();
-                String first = current.substring(0, current.length() / 2);
-                String second = current.substring(current.length() / 2);
-                for(char c : first.toCharArray()) {
-                    if(second.indexOf(c) >= 0) {
-                        if(Character.isLowerCase(c))
-                            sum += c - 'a' + 1;
-                        else
-                            sum += c - 'A' + 27;
+            while(scanner.hasNext())
+                sum += findCommonCharacterValueFromHalf(scanner.nextLine());
 
-                        break;
-                    }
-                }
-            }
         }
         System.out.println(sum);
+    }
+
+    private static int findCommonCharacterValueFromHalf(String line) {
+        String firstHalf = line.substring(0, line.length() / 2);
+        String secondHalf = line.substring(line.length() / 2);
+        for(char c : firstHalf.toCharArray()) {
+            if(secondHalf.indexOf(c) >= 0)
+                return CharacterUtils.getValue(c);
+
+        }
+        throw new IllegalStateException();
     }
 }
