@@ -25,7 +25,7 @@ public class Day3 {
                     if (third.indexOf(ch) >= 0) {
                         if (Character.isLowerCase(ch))
                             sum += ch - 'a' + 1;
-                         else
+                        else
                             sum += ch - 'A' + 27;
 
                         break;
