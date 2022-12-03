@@ -1,4 +1,4 @@
-package se.hernebring.day3;
+package se.hernebring.day3.part1;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +19,11 @@ public class Day3 {
                 String second = current.substring(current.length() / 2);
                 for(char c : first.toCharArray()) {
                     if(second.indexOf(c) >= 0) {
-                        if(Character.isLowerCase(c)) {
+                        if(Character.isLowerCase(c))
                             sum += c - 'a' + 1;
-                        } else {
+                        else
                             sum += c - 'A' + 27;
-                        }
+
                         break;
                     }
                 }

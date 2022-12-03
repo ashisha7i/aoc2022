@@ -1,6 +1,7 @@
-package se.hernebring.day3;
+package se.hernebring.day3.part1;
 
 import org.junit.jupiter.api.Test;
+import se.hernebring.day3.part1.Day3;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -15,7 +16,7 @@ class Day3Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day3.main(null));
-        assertEquals("16", bos.toString().trim());
+        assertEquals("157", bos.toString().trim());
         System.setOut(System.out);
     }
 }
