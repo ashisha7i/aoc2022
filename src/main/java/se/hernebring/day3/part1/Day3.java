@@ -2,11 +2,7 @@ package se.hernebring.day3.part1;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
-
-import static java.nio.file.Files.readAllLines;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {

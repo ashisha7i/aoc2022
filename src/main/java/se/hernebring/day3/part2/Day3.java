@@ -2,9 +2,9 @@ package se.hernebring.day3.part2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
-
-import static java.nio.file.Files.readAllLines;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {
@@ -19,7 +19,7 @@ public class Day3 {
                 for(char c : first.toCharArray()) {
                     if(second.indexOf(c) >= 0)
                         common.add(c);
-                    
+
                 }
                 for (Character ch : common) {
                     if (third.indexOf(ch) >= 0) {
