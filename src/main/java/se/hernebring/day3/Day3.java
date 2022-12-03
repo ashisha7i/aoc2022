@@ -10,7 +10,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day3.txt");
+        File file = new File("src/main/resources/day3sample.txt");
         int sum = 0;
         try(Scanner scanner = new Scanner(file)) {
             while(scanner.hasNext()) {
