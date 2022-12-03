@@ -15,18 +15,12 @@ public class Day3 {
                 String first = scanner.nextLine();
                 String second = scanner.nextLine();
                 String third = scanner.nextLine();
-                Set<Character> common = new HashSet<>();
                 for(char c : first.toCharArray()) {
-                    if(second.indexOf(c) >= 0)
-                        common.add(c);
-
-                }
-                for (Character ch : common) {
-                    if (third.indexOf(ch) >= 0) {
-                        if (Character.isLowerCase(ch))
-                            sum += ch - 'a' + 1;
+                    if(second.indexOf(c) >= 0 && third.indexOf(c) >= 0) {
+                        if (Character.isLowerCase(c))
+                            sum += c - 'a' + 1;
                         else
-                            sum += ch - 'A' + 27;
+                            sum += c - 'A' + 27;
 
                         break;
                     }
