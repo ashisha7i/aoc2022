@@ -23,20 +23,7 @@ public class Day4 {
     }
 
     private static boolean isSmallerRangeInsideLargerRange(RangePair rp) {
-        boolean inside = true;
-        if(rp.leftLength() > rp.rightLength()) {
-            for(int i = rp.rightMin(); i <= rp.rightMax(); i++) {
-                if(i < rp.leftMin() | i > rp.leftMax())
-                    inside = false;
-
-            }
-        } else {
-            for(int i = rp.leftMin(); i <= rp.leftMax(); i++) {
-                if(i < rp.rightMin() | i > rp.rightMax())
-                    inside = false;
-
-            }
-        }
-        return inside;
+        return (rp.leftMin() >= rp.rightMin() && rp.leftMax()<= rp.rightMax()) ||
+                (rp.rightMin() >= rp.leftMin() && rp.rightMax() <= rp.leftMax());
     }
 }

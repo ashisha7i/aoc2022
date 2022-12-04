@@ -13,11 +13,4 @@ public record RangePair(int leftMin, int leftMax, int rightMin, int rightMax) {
         return new RangePair(min1, max1, min2, max2);
     }
 
-    public int leftLength() {
-        return leftMax - leftMin;
-    }
-
-    public int rightLength() {
-        return rightMax - rightMin;
-    }
 }

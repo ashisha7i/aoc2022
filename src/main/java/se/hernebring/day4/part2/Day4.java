@@ -24,20 +24,6 @@ public class Day4 {
     }
 
     private static boolean doesSmallerRangeTouchLargerRange(RangePair rp) {
-        boolean overlaps = false;
-        if(rp.leftLength() > rp.rightLength()) {
-            for(int i = rp.rightMin(); i <= rp.rightMax(); i++) {
-                if(i >= rp.leftMin() & i <= rp.leftMax())
-                    overlaps = true;
-
-            }
-        } else {
-            for(int i = rp.leftMin(); i <= rp.leftMax(); i++) {
-                if(i >= rp.rightMin() & i <= rp.rightMax())
-                    overlaps = true;
-
-            }
-        }
-        return overlaps;
+        return rp.leftMin() <= rp.rightMax() && rp.leftMax() >= rp.rightMin();
     }
 }
