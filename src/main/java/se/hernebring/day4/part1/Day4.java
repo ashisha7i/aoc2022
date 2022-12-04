@@ -13,7 +13,7 @@ public class Day4 {
         try(Scanner scanner = new Scanner(file)) {
             while(scanner.hasNext()) {
                 RangePair rp = RangePair.parseRanges(scanner.nextLine());
-                if(smallerRangeIsInsideLargerRange(rp))
+                if(oneRangeContainsTheOther(rp))
                     counter++;
 
             }
@@ -21,8 +21,15 @@ public class Day4 {
         System.out.println(counter);
     }
 
-    private static boolean smallerRangeIsInsideLargerRange(RangePair rp) {
-        return (rp.leftMin() >= rp.rightMin() && rp.leftMax()<= rp.rightMax()) ||
-                (rp.rightMin() >= rp.leftMin() && rp.rightMax() <= rp.leftMax());
+    private static boolean oneRangeContainsTheOther(RangePair rp) {
+        return leftContainsRight(rp) | rightContainsLeft(rp);
+    }
+
+    private static boolean leftContainsRight(RangePair rp) {
+        return rp.rightMin() >= rp.leftMin() && rp.rightMax() <= rp.leftMax();
+    }
+
+    private static boolean rightContainsLeft(RangePair rp) {
+        return rp.leftMin() >= rp.rightMin() && rp.leftMax() <= rp.rightMax();
     }
 }
