@@ -12,7 +12,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day4 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day4sample.txt");
+        File file = new File("src/main/resources/day4samplePart1.txt");
         try(Scanner scanner = new Scanner(file)) {
             int counter = 0;
             while(scanner.hasNext()) {
