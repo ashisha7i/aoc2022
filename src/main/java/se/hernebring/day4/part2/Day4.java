@@ -14,8 +14,7 @@ public class Day4 {
         try(Scanner scanner = new Scanner(file)) {
             while(scanner.hasNext()) {
                 RangePair rp = RangePair.parseRanges(scanner.nextLine());
-                boolean overlaps = doesSmallerRangeTouchLargerRange(rp);
-                if(overlaps)
+                if(rangesDoTouch(rp))
                     counter++;
 
             }
@@ -23,7 +22,7 @@ public class Day4 {
         System.out.println(counter);
     }
 
-    private static boolean doesSmallerRangeTouchLargerRange(RangePair rp) {
+    private static boolean rangesDoTouch(RangePair rp) {
         return rp.leftMin() <= rp.rightMax() && rp.leftMax() >= rp.rightMin();
     }
 }

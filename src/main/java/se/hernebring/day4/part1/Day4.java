@@ -13,8 +13,7 @@ public class Day4 {
         try(Scanner scanner = new Scanner(file)) {
             while(scanner.hasNext()) {
                 RangePair rp = RangePair.parseRanges(scanner.nextLine());
-                boolean inside = isSmallerRangeInsideLargerRange(rp);
-                if(inside)
+                if(smallerRangeIsInsideLargerRange(rp))
                     counter++;
 
             }
@@ -22,7 +21,7 @@ public class Day4 {
         System.out.println(counter);
     }
 
-    private static boolean isSmallerRangeInsideLargerRange(RangePair rp) {
+    private static boolean smallerRangeIsInsideLargerRange(RangePair rp) {
         return (rp.leftMin() >= rp.rightMin() && rp.leftMax()<= rp.rightMax()) ||
                 (rp.rightMin() >= rp.leftMin() && rp.rightMax() <= rp.leftMax());
     }
