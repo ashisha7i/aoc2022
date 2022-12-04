@@ -1,4 +1,4 @@
-package se.hernebring.day4;
+package se.hernebring.day4.part2;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class Day4Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day4.main(null));
-        assertEquals("Hello world!", bos.toString().trim());
+        assertEquals("4", bos.toString().trim());
         System.setOut(System.out);
     }
 }
