@@ -22,14 +22,14 @@ public class Day4 {
     }
 
     private static boolean oneRangeContainsTheOther(RangePair rp) {
-        return leftContainsRight(rp) | rightContainsLeft(rp);
+        return leftContainsRight(rp) || rightContainsLeft(rp);
     }
 
     private static boolean leftContainsRight(RangePair rp) {
-        return rp.rightMin() >= rp.leftMin() && rp.rightMax() <= rp.leftMax();
+        return rp.leftMin() <= rp.rightMin()  && rp.leftMax() >= rp.rightMax();
     }
 
     private static boolean rightContainsLeft(RangePair rp) {
-        return rp.leftMin() >= rp.rightMin() && rp.leftMax() <= rp.rightMax();
+        return rp.rightMin() <= rp.leftMin() && rp.rightMax() >= rp.leftMax();
     }
 }
