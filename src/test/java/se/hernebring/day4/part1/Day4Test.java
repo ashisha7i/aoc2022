@@ -15,8 +15,7 @@ class Day4Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day4.main(null));
-        assertNotEquals("978", bos.toString().trim());
-        assertNotEquals("657", bos.toString().trim());
+        assertEquals("2", bos.toString().trim());
         System.setOut(System.out);
     }
 }

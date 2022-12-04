@@ -9,8 +9,8 @@ public class Day4 {
 
     public static void main(String[] args) throws IOException {
         File file = new File("src/main/resources/day4samplePart1.txt");
+        int counter = 0;
         try(Scanner scanner = new Scanner(file)) {
-            int counter = 0;
             while(scanner.hasNext()) {
                 RangePair rp = RangePair.parseRanges(scanner.nextLine());
                 boolean inside = isSmallerRangeInsideLargerRange(rp);
@@ -18,8 +18,8 @@ public class Day4 {
                     counter++;
 
             }
-            System.out.println(counter);
         }
+        System.out.println(counter);
     }
 
     private static boolean isSmallerRangeInsideLargerRange(RangePair rp) {
@@ -28,11 +28,13 @@ public class Day4 {
             for(int i = rp.rightMin(); i <= rp.rightMax(); i++) {
                 if(i < rp.leftMin() | i > rp.leftMax())
                     inside = false;
+
             }
         } else {
             for(int i = rp.leftMin(); i <= rp.leftMax(); i++) {
                 if(i < rp.rightMin() | i > rp.rightMax())
                     inside = false;
+
             }
         }
         return inside;
