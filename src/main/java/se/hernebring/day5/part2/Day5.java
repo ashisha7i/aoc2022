@@ -55,19 +55,18 @@ public class Day5 {
                 tempIndex = 2;
 
             List<Character> boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++) {
+            for(int i = 0; i < pops; i++)
                 boxes.add(stacks[fromIndex].pop());
-            }
-            for(Character b : boxes) {
+
+            for(Character b : boxes)
                 stacks[tempIndex].push(b);
-            }
+
             boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++) {
+            for(int i = 0; i < pops; i++)
                 boxes.add(stacks[tempIndex].pop());
-            }
-            for(Character b : boxes) {
+
+            for(Character b : boxes)
                 stacks[toIndex].push(b);
-            }
 
         }
     }
