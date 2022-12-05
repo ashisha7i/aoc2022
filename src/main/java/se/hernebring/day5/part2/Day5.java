@@ -1,5 +1,7 @@
 package se.hernebring.day5.part2;
 
+import se.hernebring.day5.Delivery;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,8 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-import static se.hernebring.day5.Day5.createStacks;
-import static se.hernebring.day5.Day5.printResult;
+import static se.hernebring.day5.Day5.*;
 
 public class Day5 {
     private static List<String> instructions;
@@ -31,43 +32,26 @@ public class Day5 {
                 crates.add(latest);
             } while(latest.indexOf(']') >= 0);
             scanner.nextLine();
-            while(scanner.hasNext()) {
+            while(scanner.hasNext())
                 instructions.add(scanner.nextLine());
-            }
+
         }
         return crates;
     }
     private static void performInstructions(Stack<Character>[] stacks) {
         for(String action : instructions) {
-            Scanner lineScanner = new Scanner(action);
-            lineScanner.next();
-            int pops = lineScanner.nextInt();
-            lineScanner.next();
-            int fromIndex = lineScanner.nextInt() - 1;
-            lineScanner.next();
-            int toIndex = lineScanner.nextInt() - 1;
+            Delivery d = Delivery.parse(action);
+
             int tempIndex;
-            if(fromIndex != 0 & toIndex != 0)
+            if(d.fromIndex() != 0 & d.toIndex() != 0)
                 tempIndex = 0;
-            else if(fromIndex != 1 & toIndex != 1)
+            else if(d.fromIndex() != 1 & d.toIndex() != 1)
                 tempIndex = 1;
             else
                 tempIndex = 2;
 
-            List<Character> boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++)
-                boxes.add(stacks[fromIndex].pop());
-
-            for(Character b : boxes)
-                stacks[tempIndex].push(b);
-
-            boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++)
-                boxes.add(stacks[tempIndex].pop());
-
-            for(Character b : boxes)
-                stacks[toIndex].push(b);
-
+            moveBoxes(new Delivery(d.number(), d.fromIndex(), tempIndex), stacks);
+            moveBoxes(new Delivery(d.number(), tempIndex, d.toIndex()), stacks);
         }
     }
 }
