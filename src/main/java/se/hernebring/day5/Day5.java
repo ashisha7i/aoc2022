@@ -1,4 +1,4 @@
-package se.hernebring.day5.part2;
+package se.hernebring.day5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-import static se.hernebring.day5.Day5.createStacks;
-import static se.hernebring.day5.Day5.printResult;
-
 public class Day5 {
+
     private static List<String> instructions;
+
     public static void main(String[] args) throws IOException {
         List<String> crates = createCratesAndInstructions();
         Stack<Character>[] stacks = createStacks(crates);
@@ -21,10 +20,10 @@ public class Day5 {
     }
 
     private static List<String> createCratesAndInstructions() throws FileNotFoundException {
-        File file = new File("src/main/resources/day5samplePart2.txt");
+        File file = new File("src/main/resources/day5sample.txt");
         List<String> crates = new ArrayList<>();
+        instructions = new ArrayList<>();
         try(Scanner scanner = new Scanner(file)) {
-            instructions = new ArrayList<>();
             String latest;
             do {
                 latest = scanner.nextLine();
@@ -37,6 +36,26 @@ public class Day5 {
         }
         return crates;
     }
+
+    public static Stack<Character>[] createStacks(List<String> crates) {
+        String indexes = crates.remove(crates.size() - 1).trim();
+        int largestIndex = Character.getNumericValue(indexes.charAt(indexes.length() - 1));
+        Stack<Character>[] stacks = new Stack[largestIndex];
+        for(int s = 0; s < stacks.length; s++) {
+            stacks[s] = new Stack<>();
+        }
+        for(int i = crates.size() - 1; i >= 0; i--) {
+            String c = crates.get(i);
+            for(int j = 1, s = 0; s < largestIndex && j < c.length(); j += 4, s++) {
+                char box = c.charAt(j);
+                if(box != ' ') {
+                    stacks[s].push(box);
+                }
+            }
+        }
+        return stacks;
+    }
+
     private static void performInstructions(Stack<Character>[] stacks) {
         for(String action : instructions) {
             Scanner lineScanner = new Scanner(action);
@@ -46,29 +65,20 @@ public class Day5 {
             int fromIndex = lineScanner.nextInt() - 1;
             lineScanner.next();
             int toIndex = lineScanner.nextInt() - 1;
-            int tempIndex;
-            if(fromIndex != 0 & toIndex != 0)
-                tempIndex = 0;
-            else if(fromIndex != 1 & toIndex != 1)
-                tempIndex = 1;
-            else
-                tempIndex = 2;
-
             List<Character> boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++) {
+            for(int i = 0; i < pops; i++)
                 boxes.add(stacks[fromIndex].pop());
-            }
-            for(Character b : boxes) {
-                stacks[tempIndex].push(b);
-            }
-            boxes = new ArrayList<>();
-            for(int i = 0; i < pops; i++) {
-                boxes.add(stacks[tempIndex].pop());
-            }
-            for(Character b : boxes) {
+
+            for(Character b : boxes)
                 stacks[toIndex].push(b);
-            }
 
         }
+    }
+
+    public static void printResult(Stack<Character>[] stacks) {
+        for(Stack<Character> s : stacks)
+            System.out.print(s.peek());
+
+        System.out.println();
     }
 }
