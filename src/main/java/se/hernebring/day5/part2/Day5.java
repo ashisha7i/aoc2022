@@ -9,10 +9,7 @@ import java.util.Stack;
 
 public class Day5 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day5sample.txt");
-//        List<String> lines = readAllLines(file.toPath());
-//        for(String l : lines)
-//            System.out.println(l);
+        File file = new File("src/main/resources/day5samplePart2.txt");
 
         try(Scanner scanner = new Scanner(file)) {
             List<String> crates = new ArrayList<>();

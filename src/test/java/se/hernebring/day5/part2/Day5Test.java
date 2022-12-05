@@ -1,4 +1,4 @@
-package se.hernebring.day5;
+package se.hernebring.day5.part2;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class Day5Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day5.main(null));
-        assertEquals("CMZ", bos.toString().trim());
+        assertEquals("MDN", bos.toString().trim());
         System.setOut(System.out);
     }
 

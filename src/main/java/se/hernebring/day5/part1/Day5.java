@@ -1,4 +1,4 @@
-package se.hernebring.day5;
+package se.hernebring.day5.part1;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +11,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day5 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day5.txt");
-//        List<String> lines = readAllLines(file.toPath());
-//        for(String l : lines)
-//            System.out.println(l);
+        File file = new File("src/main/resources/day5sample.txt");
 
         try(Scanner scanner = new Scanner(file)) {
             List<String> crates = new ArrayList<>();
@@ -65,8 +62,5 @@ public class Day5 {
             }
             System.out.println();
         }
-
-// ALTERNATIVE FOR FUNCTIONAL STRING MANIPULATION
-//        String.join(",", readAllLines(file.toPath()));
     }
 }
