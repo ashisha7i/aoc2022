@@ -1,4 +1,4 @@
-package se.hernebring.day5;
+package se.hernebring.day5.part2;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-import static java.nio.file.Files.readAllLines;
-
 public class Day5 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day5.txt");
+        File file = new File("src/main/resources/day5sample.txt");
 //        List<String> lines = readAllLines(file.toPath());
 //        for(String l : lines)
 //            System.out.println(l);
@@ -51,9 +49,24 @@ public class Day5 {
                     int fromIndex = lineScanner.nextInt() - 1;
                     lineScanner.next();
                     int toIndex = lineScanner.nextInt() - 1;
+                    int tempIndex;
+                    if(fromIndex != 0 & toIndex != 0)
+                        tempIndex = 0;
+                    else if(fromIndex != 1 & toIndex != 1)
+                        tempIndex = 1;
+                    else
+                        tempIndex = 2;
+
                     List<Character> boxes = new ArrayList<>();
                     for(int i = 0; i < pops; i++) {
                         boxes.add(stacks[fromIndex].pop());
+                    }
+                    for(Character b : boxes) {
+                        stacks[tempIndex].push(b);
+                    }
+                    boxes = new ArrayList<>();
+                    for(int i = 0; i < pops; i++) {
+                        boxes.add(stacks[tempIndex].pop());
                     }
                     for(Character b : boxes) {
                         stacks[toIndex].push(b);

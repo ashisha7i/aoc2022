@@ -15,7 +15,7 @@ public class Day5Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day5.main(null));
-        assertEquals("Hello world!", bos.toString().trim());
+        assertEquals("CMZ", bos.toString().trim());
         System.setOut(System.out);
     }
 
