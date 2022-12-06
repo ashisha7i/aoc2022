@@ -1,4 +1,4 @@
-package se.hernebring.day6;
+package se.hernebring.day6.part1;
 
 import org.junit.jupiter.api.Test;
 

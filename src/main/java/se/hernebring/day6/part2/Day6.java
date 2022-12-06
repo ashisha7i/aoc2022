@@ -1,15 +1,12 @@
-package se.hernebring.day6;
+package se.hernebring.day6.part2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
-
-import static java.nio.file.Files.readAllLines;
 
 public class Day6 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day6.txt");
+        File file = new File("src/main/resources/day6sample.txt");
         String line;
         try(Scanner scanner = new Scanner(file)) {
             line = scanner.nextLine();
@@ -30,10 +27,5 @@ public class Day6 {
             }
         }
         System.out.println(counter);
-
-
-
-// ALTERNATIVE FOR FUNCTIONAL STRING MANIPULATION
-//        String.join(",", readAllLines(file.toPath()));
     }
 }
