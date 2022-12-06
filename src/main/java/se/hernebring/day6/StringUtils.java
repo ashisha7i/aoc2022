@@ -2,13 +2,11 @@ package se.hernebring.day6;
 
 public class StringUtils {
     public static int findUniqueCharacterSequence(String line, int length) {
-        int counter = 0;
+        int counter = length - 1;
         boolean differentSequence = false;
         while(!differentSequence) {
             counter++;
-            if(counter >= length)
-                differentSequence = isUniqueCharacterSequence(line, length, counter);
-
+            differentSequence = isUniqueCharacterSequence(line, length, counter);
         }
         return counter;
     }
