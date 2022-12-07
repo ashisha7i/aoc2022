@@ -1,6 +1,7 @@
 package se.hernebring.day7;
 
 import org.junit.jupiter.api.Test;
+import se.hernebring.day7.part1.Day7;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

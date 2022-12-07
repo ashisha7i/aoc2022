@@ -54,12 +54,12 @@ public class Directory {
 
     public int getSize() {
         int sum = 0;
-        for(File f : files) {
+        for(File f : files)
             sum += f.size();
-        }
-        for(Directory d : children) {
+
+        for(Directory d : children)
             sum += d.getSize();
-        }
+
         return sum;
     }
 }
