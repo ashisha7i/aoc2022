@@ -7,7 +7,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day7 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day7.txt");
+        File file = new File("src/main/resources/day7sample.txt");
         String input = String.join(",", readAllLines(file.toPath()));
         FileSystem fileSystem = new FileSystem();
         String[] commands = input.split("\\$ ");

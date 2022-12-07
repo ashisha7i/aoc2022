@@ -28,25 +28,10 @@ public class FileSystem {
             String[] file = local.split(" ");
             directory.addFile(file[1], Integer.parseInt(file[0]));
         } else {
-            if(local.charAt(local.length() - 1) == ',')
-                local = local.substring(0, local.length() - 1);
-
             Directory child = new Directory(local.substring(4));
             child.addParent(directory);
             directory.addChild(child);
         }
-    }
-
-    public void printAll() {
-        System.out.println("Directory{name='/'" + System.lineSeparator() + "files=");
-        goToRoot();
-        List<File> files = directory.getFiles();
-        Collections.sort(files);
-        System.out.println(files);
-        List<Directory> directories = directory.getChildren();
-        Collections.sort(directories);
-        System.out.println(directories);
-        System.out.println("}");
     }
 
     public void printSumOfDirectoriesAtMost100k() {

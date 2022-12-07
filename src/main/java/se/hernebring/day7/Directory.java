@@ -3,11 +3,11 @@ package se.hernebring.day7;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory implements Comparable<Directory> {
+public class Directory {
 
     private final String name;
-    private List<File> files = new ArrayList<>();
-    private List<Directory> children = new ArrayList<>();
+    private final List<File> files = new ArrayList<>();
+    private final List<Directory> children = new ArrayList<>();
 
     private Directory parent = null;
 
@@ -52,24 +52,6 @@ public class Directory implements Comparable<Directory> {
         return children;
     }
 
-    public List<File> getFiles() {
-        return files;
-    }
-
-    @Override
-    public int compareTo(Directory o) {
-        return name.compareTo(o.name);
-    }
-
-    @Override
-    public String toString() {
-        return "Directory{" +
-                "name='" + name + '\'' + System.lineSeparator() +
-                "files=" + files + System.lineSeparator() +
-                "children=" + children +
-                '}';
-    }
-
     public int getSize() {
         int sum = 0;
         for(File f : files) {
@@ -79,9 +61,5 @@ public class Directory implements Comparable<Directory> {
             sum += d.getSize();
         }
         return sum;
-    }
-
-    public void removeChild(Directory child) {
-        children.remove(child);
     }
 }
