@@ -29,13 +29,13 @@ public class FileSystem {
     }
 
     private void cd(String command) {
-        if(command.charAt(3) == '/') {
+        if(command.charAt(3) == '/')
             goToRoot();
-        } else if(command.charAt(3) == '.') {
+        else if(command.charAt(3) == '.')
             goToParent();
-        } else {
+        else
             goToChild(command.substring(3, command.length() - 1));
-        }
+
     }
 
     private void ls(String command) {

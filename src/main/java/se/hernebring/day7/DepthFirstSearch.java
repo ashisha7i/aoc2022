@@ -23,6 +23,8 @@ public class DepthFirstSearch {
         int currentSize = current.getSize();
         if(currentSize >= threshold)
             above.add(currentSize);
+        else
+            return;
 
         List<Directory> children = current.getChildren();
         if(children.size() < 1)
