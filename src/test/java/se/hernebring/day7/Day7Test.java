@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day7Test {
 
     @Test
-    void mainPrintsSumOfDirectioriesUnder100k() {
+    void mainPrintsSumOfDirectoriesUnder100k() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day7.main(null));

@@ -36,7 +36,7 @@ public class FileSystem {
 
     public void printSumOfDirectoriesAtMost100k() {
         goToRoot();
-        int sum = DivideAndConquer.addWhenAtMost100k(directory);
+        int sum = DepthFirstSearch.addWhenAtMost100k(directory);
         System.out.println(sum);
     }
 
@@ -48,7 +48,7 @@ public class FileSystem {
         int unusedSpace = totalSpaceAvailable - rootSize;
         Assertions.assertTrue(unusedSpace < minimumSpaceNeeded);
         List<Integer> above = new ArrayList<>();
-        DivideAndConquer.find(directory, above, minimumSpaceNeeded - unusedSpace);
+        DepthFirstSearch.find(directory, above, minimumSpaceNeeded - unusedSpace);
         Collections.sort(above);
         System.out.println(above.get(0));
     }

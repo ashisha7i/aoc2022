@@ -2,7 +2,7 @@ package se.hernebring.day7;
 
 import java.util.List;
 
-public class DivideAndConquer {
+public class DepthFirstSearch {
     public static int addWhenAtMost100k(Directory directory) {
         int sum = 0;
         int dirSize = directory.getSize();
