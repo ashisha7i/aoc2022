@@ -9,6 +9,11 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day7 {
     public static void main(String[] args) throws IOException {
+        FileSystem fileSystem = createFileSystem();
+        fileSystem.printSmallestDirectoryAboveThreshold();
+    }
+
+    public static FileSystem createFileSystem() throws IOException {
         File file = new File("src/main/resources/day7sample.txt");
         String input = String.join(",", readAllLines(file.toPath()));
         FileSystem fileSystem = new FileSystem();
@@ -32,6 +37,6 @@ public class Day7 {
                 }
             }
         }
-        fileSystem.printSmallestDirectoryAboveThreshold();
+        return fileSystem;
     }
 }
