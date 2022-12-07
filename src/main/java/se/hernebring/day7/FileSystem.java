@@ -49,7 +49,7 @@ public class FileSystem {
 
     public void goToRoot() {
         while(directory.getParent() != null)
-            directory = directory.getParent();
+            goToParent();
 
     }
     public void goToParent() {

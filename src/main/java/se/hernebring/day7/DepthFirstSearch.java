@@ -9,11 +9,7 @@ public class DepthFirstSearch {
         if(dirSize <= 100_000)
             sum += dirSize;
 
-        List<Directory> children = directory.getChildren();
-        if(children.size() < 1)
-            return sum;
-
-        for(Directory d : children)
+        for(Directory d : directory.getChildren())
             sum += addWhenAtMost100k(d);
 
         return sum;
@@ -26,11 +22,7 @@ public class DepthFirstSearch {
         else
             return;
 
-        List<Directory> children = current.getChildren();
-        if(children.size() < 1)
-            return;
-
-        for(Directory d : children)
+        for(Directory d : current.getChildren())
             find(d, above, threshold);
 
     }
