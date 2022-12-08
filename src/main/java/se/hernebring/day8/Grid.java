@@ -68,45 +68,17 @@ public class Grid {
 
     }
 
-    private void calculatePointVisibility(int x, int y, Direction direction) {
+    private void calculatePointVisibility(int x, int y, Direction d) {
         int directionScore = 0;
         boolean isVisibleInDirection = true;
-        switch(direction) {
-            case NORTH -> {
-                for(int i = y - 1; i >= 0; i--) {
-                    directionScore++;
-                    if(grid[i][x] >= grid[y][x]) {
-                        isVisibleInDirection = false;
-                        break;
-                    }
-                }
-            }
-            case EAST -> {
-                for(int i = x + 1; i <= xMax - 1; i++) {
-                    directionScore++;
-                    if(grid[y][i] >= grid[y][x]) {
-                        isVisibleInDirection = false;
-                        break;
-                    }
-                };
-            }
-            case SOUTH -> {
-                for(int i = y + 1; i <= yMax - 1; i++) {
-                    directionScore++;
-                    if(grid[i][x] >= grid[y][x]) {
-                        isVisibleInDirection = false;
-                        break;
-                    }
-                }
-            }
-            case WEST -> {
-                for(int i = x - 1; i >= 0; i--) {
-                    directionScore++;
-                    if(grid[y][i] >= grid[y][x]) {
-                        isVisibleInDirection = false;
-                        break;
-                    }
-                }
+        for(int dX = x + d.getEast(), dY = y + d.getSouth();
+            dX < xMax & dY < yMax & dX >= 0 & dY >= 0;
+            dX += d.getEast(), dY += d.getSouth())
+        {
+            directionScore++;
+            if(grid[dX][dY] >= grid[y][x]) {
+                isVisibleInDirection = false;
+                break;
             }
         }
         currentScore *= directionScore;
