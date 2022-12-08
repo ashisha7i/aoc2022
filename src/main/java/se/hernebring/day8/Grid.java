@@ -76,7 +76,7 @@ public class Grid {
             dX += d.getEast(), dY += d.getSouth())
         {
             directionScore++;
-            if(grid[dX][dY] >= grid[y][x]) {
+            if(grid[dY][dX] >= grid[y][x]) {
                 isVisibleInDirection = false;
                 break;
             }
