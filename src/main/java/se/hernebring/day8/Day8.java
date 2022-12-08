@@ -10,9 +10,10 @@ public class Day8 {
     public static void main(String[] args) throws IOException {
         List<String> lines = readAllLines(Path.of("src/main/resources/day8sample.txt"));
         Grid grid = new Grid(lines);
+        grid.calculateVisibility();
         //part 1:
-        System.out.println(grid.countVisibleTrees());
+        System.out.println(grid.getCounter());
         //part 2:
-        System.out.println(grid.findBestSpot());
+        System.out.println(grid.getHighScore());
     }
 }

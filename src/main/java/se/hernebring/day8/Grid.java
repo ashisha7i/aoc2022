@@ -6,6 +6,10 @@ import java.util.List;
 public class Grid {
     private int[][] grid;
     private int yMax, xMax;
+    private int currentScore;
+    private int counter;
+    private int highScore;
+    private boolean visible;
 
     public Grid(List<String> input) {
         yMax = input.size();
@@ -24,32 +28,31 @@ public class Grid {
         }
     }
 
-    public int countVisibleTrees() {
-        int counter = 0;
+    public void calculateVisibility() {
+        counter = 0;
+        highScore = 0;
         for(int y = 0; y < yMax; y++) {
             for(int x = 0; x < xMax; x++) {
                 if(edge(x, y))
                     counter++;
-                else if(visible(x, y))
-                    counter++;
+                else {
+                    calculatePointVisibility(x, y);
+                    if(visible)
+                        counter++;
 
-            }
-        }
-        return counter;
-    }
-
-    public int findBestSpot() {
-        int highScore = 0;
-        for(int y = 0; y < yMax; y++) {
-            for(int x = 0; x < xMax; x++) {
-                if(!edge(x, y)) {
-                    int score = calculateVisibilityScore(x, y);
-                    if(score > highScore)
-                        highScore = score;
+                    if(currentScore > highScore)
+                        highScore = currentScore;
 
                 }
             }
         }
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public int getHighScore() {
         return highScore;
     }
 
@@ -57,74 +60,54 @@ public class Grid {
         return y == 0 | y == yMax - 1 || x == 0 | x == xMax - 1;
     }
 
-    private boolean visible(int x, int y) {
-        boolean visible = true;
+    private void calculatePointVisibility(int x, int y) {
+        visible = true;
+        currentScore = 0;
         for(int j = y + 1; j < yMax; j++) {
+            currentScore++;
             if(grid[j][x] >= grid[y][x]) {
                 visible = false;
                 break;
             }
         }
-        if(!visible) {
-            visible = true;
-            for(int j = 0; j < y; j++) {
-                if(grid[j][x] >= grid[y][x]) {
-                    visible = false;
-                    break;
-                }
-            }
-        }
-        if(!visible) {
-            visible = true;
-            for(int i = x + 1; i < xMax; i++) {
-                if(grid[y][i] >= grid[y][x]) {
-                    visible = false;
-                    break;
-                }
-            }
-        }
-        if(!visible) {
-            for(int i = 0; i < x; i++) {
-                if(grid[y][i] >= grid[y][x]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private int calculateVisibilityScore(int x, int y) {
-        int visible = 0;
-        for(int j = y + 1; j < yMax; j++) {
-            visible++;
-            if(grid[j][x] >= grid[y][x])
-                break;
-
-        }
         int counter = 0;
+        boolean v = true;
         for(int j = y - 1; j >= 0; j--) {
             counter++;
-            if(grid[j][x] >= grid[y][x])
+            if(grid[j][x] >= grid[y][x]) {
+                v = false;
                 break;
-
+            }
         }
-        visible *= counter;
+        currentScore *= counter;
         counter = 0;
+        if(!visible)
+            visible = v;
+
+        v = true;
         for(int i = x + 1; i < xMax; i++) {
             counter++;
-            if(grid[y][i] >= grid[y][x])
+            if(grid[y][i] >= grid[y][x]) {
+                v = false;
                 break;
-
+            }
         }
-        visible *= counter;
+        currentScore *= counter;
         counter = 0;
+        if(!visible)
+            visible = v;
+
+        v = true;
         for(int i = x - 1; i >= 0; i--) {
             counter++;
-            if(grid[y][i] >= grid[y][x])
+            if(grid[y][i] >= grid[y][x]) {
+                v = false;
                 break;
-
+            }
         }
-        visible *= counter;
-        return visible;
+        currentScore *= counter;
+        if(!visible)
+            visible = v;
+
     }
 }
