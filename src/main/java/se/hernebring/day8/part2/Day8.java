@@ -1,12 +1,9 @@
-package se.hernebring.day8;
+package se.hernebring.day8.part2;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Stack;
 
 import static java.nio.file.Files.readAllLines;
 
@@ -24,51 +21,53 @@ public class Day8 {
                 grid[y][x] = Character.getNumericValue(current.charAt(x));
 
         }
-        int counter = 0;
+        int max = 0;
         for(int y = 0; y < yMax; y++) {
             for(int x = 0; x < xMax; x++) {
-                if(y == 0 | y == yMax - 1 || x == 0 | x == xMax - 1)
-                    counter++;
-                else {
-                    boolean visible = true;
+                int visible = 0;
+                if(y != 0 & y != yMax - 1 & x != 0 & x != xMax - 1) {
                     for(int j = y + 1; j < yMax; j++) {
+                        visible++;
                         if(grid[j][x] >= grid[y][x]) {
-                            visible = false;
                             break;
                         }
                     }
-                    if(!visible) {
-                        visible = true;
-                        for(int j = 0; j < y; j++) {
+                    if(visible != 0) {
+                        int counter = 0;
+                        for(int j = y - 1; j >= 0; j--) {
+                            counter++;
                             if(grid[j][x] >= grid[y][x]) {
-                                visible = false;
                                 break;
                             }
                         }
+                        visible *= counter;
                     }
-                    if(!visible) {
-                        visible = true;
+                    if(visible != 0) {
+                        int counter = 0;
                         for(int i = x + 1; i < xMax; i++) {
+                            counter++;
                             if(grid[y][i] >= grid[y][x]) {
-                                visible = false;
                                 break;
                             }
                         }
+                        visible *= counter;
                     }
-                    if(!visible) {
-                        visible = true;
-                        for(int i = 0; i < x; i++) {
+                    if(visible != 0) {
+                        int counter = 0;
+                        for(int i = x - 1; i >= 0; i--) {
+                            counter++;
                             if(grid[y][i] >= grid[y][x]) {
-                                visible = false;
                                 break;
                             }
                         }
+                        visible *= counter;
                     }
-                    if(visible)
-                        counter++;
+                }
+                if(visible > max) {
+                    max = visible;
                 }
             }
         }
-        System.out.println(counter);
+        System.out.println(max);
     }
 }

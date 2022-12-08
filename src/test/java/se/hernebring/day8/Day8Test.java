@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Day1Test {
+class Day8Test {
 
     @Test
     void mainPrintsHelloWorldFromTextFile() {
