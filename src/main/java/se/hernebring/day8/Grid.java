@@ -4,25 +4,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Grid {
-    private final int[][] grid;
+    private int[][] grid;
     private int yMax, xMax;
 
-    public Grid(List<String> lines) {
-        grid = createGrid(lines);
+    public Grid(List<String> input) {
+        yMax = input.size();
+        grid = new int[yMax][];
+        xMax = input.get(0).trim().length();
+        Arrays.setAll(grid, row -> new int[xMax]);
+        populateGrid(input);
     }
 
-    private int[][] createGrid(List<String> lines) {
-        yMax = lines.size();
-        int[][] grid = new int[yMax][];
-        xMax = lines.get(0).trim().length();
-        Arrays.setAll(grid, row -> new int[xMax]);
+    private void populateGrid(List<String> lines) {
         for(int y = 0; y < yMax; y++) {
             String current = lines.get(y);
             for(int x = 0; x < xMax; x++)
                 grid[y][x] = Character.getNumericValue(current.charAt(x));
 
         }
-        return grid;
     }
 
     public int countVisibleTrees() {
@@ -85,55 +84,47 @@ public class Grid {
             }
         }
         if(!visible) {
-            visible = true;
             for(int i = 0; i < x; i++) {
                 if(grid[y][i] >= grid[y][x]) {
-                    visible = false;
-                    break;
+                    return false;
                 }
             }
         }
-        return visible;
+        return true;
     }
 
     private int calculateVisibilityScore(int x, int y) {
         int visible = 0;
         for(int j = y + 1; j < yMax; j++) {
             visible++;
-            if(grid[j][x] >= grid[y][x]) {
+            if(grid[j][x] >= grid[y][x])
                 break;
-            }
+
         }
-        if(visible != 0) {
-            int counter = 0;
-            for(int j = y - 1; j >= 0; j--) {
-                counter++;
-                if(grid[j][x] >= grid[y][x]) {
-                    break;
-                }
-            }
-            visible *= counter;
+        int counter = 0;
+        for(int j = y - 1; j >= 0; j--) {
+            counter++;
+            if(grid[j][x] >= grid[y][x])
+                break;
+
         }
-        if(visible != 0) {
-            int counter = 0;
-            for(int i = x + 1; i < xMax; i++) {
-                counter++;
-                if(grid[y][i] >= grid[y][x]) {
-                    break;
-                }
-            }
-            visible *= counter;
+        visible *= counter;
+        counter = 0;
+        for(int i = x + 1; i < xMax; i++) {
+            counter++;
+            if(grid[y][i] >= grid[y][x])
+                break;
+
         }
-        if(visible != 0) {
-            int counter = 0;
-            for(int i = x - 1; i >= 0; i--) {
-                counter++;
-                if(grid[y][i] >= grid[y][x]) {
-                    break;
-                }
-            }
-            visible *= counter;
+        visible *= counter;
+        counter = 0;
+        for(int i = x - 1; i >= 0; i--) {
+            counter++;
+            if(grid[y][i] >= grid[y][x])
+                break;
+
         }
+        visible *= counter;
         return visible;
     }
 }
