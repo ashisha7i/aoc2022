@@ -12,7 +12,7 @@ import static java.nio.file.Files.readAllLines;
 
 public class Day8 {
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/day8.txt");
+        File file = new File("src/main/resources/day8sample.txt");
         List<String> lines = readAllLines(file.toPath());
         int yMax = lines.size();
         int[][] grid = new int[yMax][];

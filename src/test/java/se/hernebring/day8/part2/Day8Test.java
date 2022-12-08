@@ -1,4 +1,4 @@
-package se.hernebring.day8;
+package se.hernebring.day8.part2;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class Day8Test {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
         assertDoesNotThrow(() -> Day8.main(null));
-        assertEquals("21", bos.toString().trim());
+        assertEquals("8", bos.toString().trim());
         System.setOut(System.out);
     }
 }
