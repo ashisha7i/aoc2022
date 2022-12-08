@@ -61,53 +61,57 @@ public class Grid {
     }
 
     private void calculatePointVisibility(int x, int y) {
-        visible = true;
-        currentScore = 0;
-        for(int j = y + 1; j < yMax; j++) {
-            currentScore++;
-            if(grid[j][x] >= grid[y][x]) {
-                visible = false;
-                break;
-            }
-        }
-        int counter = 0;
-        boolean v = true;
-        for(int j = y - 1; j >= 0; j--) {
-            counter++;
-            if(grid[j][x] >= grid[y][x]) {
-                v = false;
-                break;
-            }
-        }
-        currentScore *= counter;
-        counter = 0;
-        if(!visible)
-            visible = v;
+        visible = false;
+        currentScore = 1;
+        for(Direction d : Direction.values())
+            calculatePointVisibility(x, y, d);
 
-        v = true;
-        for(int i = x + 1; i < xMax; i++) {
-            counter++;
-            if(grid[y][i] >= grid[y][x]) {
-                v = false;
-                break;
-            }
-        }
-        currentScore *= counter;
-        counter = 0;
-        if(!visible)
-            visible = v;
+    }
 
-        v = true;
-        for(int i = x - 1; i >= 0; i--) {
-            counter++;
-            if(grid[y][i] >= grid[y][x]) {
-                v = false;
-                break;
+    private void calculatePointVisibility(int x, int y, Direction direction) {
+        int directionScore = 0;
+        boolean isVisibleInDirection = true;
+        switch(direction) {
+            case NORTH -> {
+                for(int i = y - 1; i >= 0; i--) {
+                    directionScore++;
+                    if(grid[i][x] >= grid[y][x]) {
+                        isVisibleInDirection = false;
+                        break;
+                    }
+                }
+            }
+            case EAST -> {
+                for(int i = x + 1; i <= xMax - 1; i++) {
+                    directionScore++;
+                    if(grid[y][i] >= grid[y][x]) {
+                        isVisibleInDirection = false;
+                        break;
+                    }
+                };
+            }
+            case SOUTH -> {
+                for(int i = y + 1; i <= yMax - 1; i++) {
+                    directionScore++;
+                    if(grid[i][x] >= grid[y][x]) {
+                        isVisibleInDirection = false;
+                        break;
+                    }
+                }
+            }
+            case WEST -> {
+                for(int i = x - 1; i >= 0; i--) {
+                    directionScore++;
+                    if(grid[y][i] >= grid[y][x]) {
+                        isVisibleInDirection = false;
+                        break;
+                    }
+                }
             }
         }
-        currentScore *= counter;
+        currentScore *= directionScore;
         if(!visible)
-            visible = v;
+            visible = isVisibleInDirection;
 
     }
 }
