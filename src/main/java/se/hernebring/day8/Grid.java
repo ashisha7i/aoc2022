@@ -29,99 +29,111 @@ public class Grid {
         int counter = 0;
         for(int y = 0; y < yMax; y++) {
             for(int x = 0; x < xMax; x++) {
-                if(y == 0 | y == yMax - 1 || x == 0 | x == xMax - 1)
+                if(edge(x, y))
                     counter++;
-                else {
-                    boolean visible = true;
-                    for(int j = y + 1; j < yMax; j++) {
-                        if(grid[j][x] >= grid[y][x]) {
-                            visible = false;
-                            break;
-                        }
-                    }
-                    if(!visible) {
-                        visible = true;
-                        for(int j = 0; j < y; j++) {
-                            if(grid[j][x] >= grid[y][x]) {
-                                visible = false;
-                                break;
-                            }
-                        }
-                    }
-                    if(!visible) {
-                        visible = true;
-                        for(int i = x + 1; i < xMax; i++) {
-                            if(grid[y][i] >= grid[y][x]) {
-                                visible = false;
-                                break;
-                            }
-                        }
-                    }
-                    if(!visible) {
-                        visible = true;
-                        for(int i = 0; i < x; i++) {
-                            if(grid[y][i] >= grid[y][x]) {
-                                visible = false;
-                                break;
-                            }
-                        }
-                    }
-                    if(visible)
-                        counter++;
-                }
+                else if(visible(x, y))
+                    counter++;
+
             }
         }
         return counter;
     }
 
     public int findBestSpot() {
-        int max = 0;
+        int highScore = 0;
         for(int y = 0; y < yMax; y++) {
             for(int x = 0; x < xMax; x++) {
-                int visible = 0;
-                if(y != 0 & y != yMax - 1 & x != 0 & x != xMax - 1) {
-                    for(int j = y + 1; j < yMax; j++) {
-                        visible++;
-                        if(grid[j][x] >= grid[y][x]) {
-                            break;
-                        }
-                    }
-                    if(visible != 0) {
-                        int counter = 0;
-                        for(int j = y - 1; j >= 0; j--) {
-                            counter++;
-                            if(grid[j][x] >= grid[y][x]) {
-                                break;
-                            }
-                        }
-                        visible *= counter;
-                    }
-                    if(visible != 0) {
-                        int counter = 0;
-                        for(int i = x + 1; i < xMax; i++) {
-                            counter++;
-                            if(grid[y][i] >= grid[y][x]) {
-                                break;
-                            }
-                        }
-                        visible *= counter;
-                    }
-                    if(visible != 0) {
-                        int counter = 0;
-                        for(int i = x - 1; i >= 0; i--) {
-                            counter++;
-                            if(grid[y][i] >= grid[y][x]) {
-                                break;
-                            }
-                        }
-                        visible *= counter;
-                    }
-                }
-                if(visible > max) {
-                    max = visible;
+                if(!edge(x, y)) {
+                    int score = calculateVisibilityScore(x, y);
+                    if(score > highScore)
+                        highScore = score;
+
                 }
             }
         }
-        return max;
+        return highScore;
+    }
+
+    private boolean edge(int x, int y) {
+        return y == 0 | y == yMax - 1 || x == 0 | x == xMax - 1;
+    }
+
+    private boolean visible(int x, int y) {
+        boolean visible = true;
+        for(int j = y + 1; j < yMax; j++) {
+            if(grid[j][x] >= grid[y][x]) {
+                visible = false;
+                break;
+            }
+        }
+        if(!visible) {
+            visible = true;
+            for(int j = 0; j < y; j++) {
+                if(grid[j][x] >= grid[y][x]) {
+                    visible = false;
+                    break;
+                }
+            }
+        }
+        if(!visible) {
+            visible = true;
+            for(int i = x + 1; i < xMax; i++) {
+                if(grid[y][i] >= grid[y][x]) {
+                    visible = false;
+                    break;
+                }
+            }
+        }
+        if(!visible) {
+            visible = true;
+            for(int i = 0; i < x; i++) {
+                if(grid[y][i] >= grid[y][x]) {
+                    visible = false;
+                    break;
+                }
+            }
+        }
+        return visible;
+    }
+
+    private int calculateVisibilityScore(int x, int y) {
+        int visible = 0;
+        for(int j = y + 1; j < yMax; j++) {
+            visible++;
+            if(grid[j][x] >= grid[y][x]) {
+                break;
+            }
+        }
+        if(visible != 0) {
+            int counter = 0;
+            for(int j = y - 1; j >= 0; j--) {
+                counter++;
+                if(grid[j][x] >= grid[y][x]) {
+                    break;
+                }
+            }
+            visible *= counter;
+        }
+        if(visible != 0) {
+            int counter = 0;
+            for(int i = x + 1; i < xMax; i++) {
+                counter++;
+                if(grid[y][i] >= grid[y][x]) {
+                    break;
+                }
+            }
+            visible *= counter;
+        }
+        if(visible != 0) {
+            int counter = 0;
+            for(int i = x - 1; i >= 0; i--) {
+                counter++;
+                if(grid[y][i] >= grid[y][x]) {
+                    break;
+                }
+            }
+            visible *= counter;
+        }
+        return visible;
     }
 }
